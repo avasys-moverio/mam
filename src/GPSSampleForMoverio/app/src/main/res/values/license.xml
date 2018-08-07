@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_license">
+Copyright\u00a9 EPSON AVASYS CORPORATION 2017-2018. All rights reserved.\n
+\n
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n \n http://www.apache.org/licenses/LICENSE-2.0\n \n Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and limitations under the License.\n </string>
+
+    <string name="open_source_usage_word">Following contains the licenses and notices for open source used in the</string>
+    <string-array name="comprise_lib_array"> 
+        <item>Android(TM) robot</item>
+    </string-array>
+    <string name="item_1"> The Android robot is reproduced or modified from work created and shared by Google and used\n according to terms described in the Creative Commons 3.0 Attribution License.\n (https://creativecommons.org/licenses/by/3.0/)\n </string>
+</resources>

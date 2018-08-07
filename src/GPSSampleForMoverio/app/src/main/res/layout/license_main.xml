@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imageView" />
+
+            <TextView
+                android:text="license window"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/appName"
+                android:textColor="@android:color/black"
+                android:textSize="36sp" />
+        </LinearLayout>
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/versionCode"
+            android:gravity="center_horizontal"
+            android:textSize="24sp"
+            android:textColor="@android:color/darker_gray" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollmain"
+                android:layout_marginBottom="60dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true">
+                <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                    android:id="@+id/licenses">
+
+                    <TextView
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/thisAppLicense" />
+
+                    <TextView
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ossList" />
+
+                    <TextView
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/otherLicense" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <Button
+                android:text="OK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/finishButton"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:focusableInTouchMode="false" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

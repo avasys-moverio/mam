@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">GPSSampleForMoverio</string>
+
+    <string-array name="search_text">
+        <item>Searching.</item>
+        <item>Searching..</item>
+        <item>Searching...</item>
+    </string-array>
+
+    <string name="bt2pro_product">EPSON_bt2pro</string>
+    <string name="bt3c_product">embt3c</string>
+    <string name="bt3s_product">embt3s</string>
+    
+    <string name="detail_info">GPS詳細情報</string>
+    <string name="close">閉じる</string>
+</resources>
