@@ -2,9 +2,12 @@ package jp.avasys.sample.locationsample;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.graphics.drawable.LevelListDrawable;
 import android.location.GpsSatellite;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,13 +35,15 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
 
     private LicenseFragment mLicenseFragment;
 
+    private ValueAnimator mAnimator;
+
     private LocationServiceManager.GPSCaptureListener mGpsCaptureListener = new LocationServiceManager.GPSCaptureListener() {
         @Override
         public void onCaptureListener(final List<GpsSatellite> list) {
 
             final Map<Integer, Integer> satelliteStrength = mLocationServiceManager.getSatelliteStrength();
-
             if (mIsSearchingText) {
+                mAnimator.end();
                 mIsSearchingText = false;
             }
 
@@ -52,16 +57,11 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
                 maxSatellites = mImageViews.length;
             }
             for (; i < maxSatellites; ++i) {
-                mImageViews[i].setAlpha(1.0f);
-                mImageViews[i].setClickable(true);
-                mImageViews[i].setFocusable(true);
-
                 final GpsSatellite gpsSatellite = list.get(i);
 
                 mImageViews[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         GPSDialogManager.resultDialog(MainActivity.this, gpsSatellite, satelliteStrength);
                     }
                 });
@@ -78,8 +78,12 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
                     }
                 });
 
-                float snr = gpsSatellite.getSnr();
-                mImageViews[i].setImageLevel((int)snr);
+                final int snr = (int)gpsSatellite.getSnr();
+                mImageViews[i].setImageLevel(snr);
+                mImageViews[i].setAlpha(1.0f);
+                mImageViews[i].setClickable(true);
+                mImageViews[i].setFocusable(true);
+
             }
 
             for (; i < mImageViews.length; ++i) {
@@ -93,10 +97,10 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
             if (!mIsSearchingText) {
                 final String[] searchTexts = getResources().getStringArray(R.array.search_text);
 
-                ValueAnimator animator = ValueAnimator.ofInt(0, searchTexts.length);
-                animator.setDuration(1500);
-                animator.setRepeatCount(ValueAnimator.INFINITE);
-                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+                mAnimator = ValueAnimator.ofInt(0, searchTexts.length);
+                mAnimator.setDuration(1500);
+                mAnimator.setRepeatCount(ValueAnimator.INFINITE);
+                mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
                         int index = (int)animation.getAnimatedValue();
@@ -106,7 +110,7 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
                     }
                 });
 
-                animator.start();
+                mAnimator.start();
 
 
                 //衛星アイコンのリセットを行う
@@ -182,7 +186,7 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
                     mImageViews[i] = (ImageView)findViewById(R.id.satellite10);
                     break;
             }
-            mImageViews[i].setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.snr_image_list, null));
+            mImageViews[i].setImageResource(R.drawable.snr_image_list);
         }
 
         setLicenseButtonAction((ImageView)findViewById(R.id.droid));
@@ -204,7 +208,7 @@ public class MainActivity extends Activity implements LicenseFragment.CloseButto
     private void resetSatelliteIcon(ImageView imageView) {
         imageView.setClickable(false);
         imageView.setFocusable(false);
-        imageView.setImageResource(R.drawable.agps_black);
+        imageView.setImageLevel(0);
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

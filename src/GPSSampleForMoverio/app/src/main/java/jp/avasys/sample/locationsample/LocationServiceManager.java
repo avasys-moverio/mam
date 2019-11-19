@@ -135,8 +135,10 @@ public class LocationServiceManager implements LocationListener, GpsStatus.Liste
 
                     if (i == 0) {
                         mListener.onSearchingListener();
+                        Log.d(MainActivity.TAG, getClass().getSimpleName() + " 0 onSearchingListener Call");
                     } else {
                         mListener.onCaptureListener(gpsSatelliteList);
+                        Log.d(MainActivity.TAG, getClass().getSimpleName() + " else onCaptureListener Call");
                     }
 
                     break;

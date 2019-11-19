@@ -13,4 +13,8 @@
         android:drawable="@drawable/agps_red"
         android:maxLevel="13"
         android:minLevel="1"/>
+    <item
+        android:drawable="@drawable/agps_black"
+        android:maxLevel="0"
+        android:minLevel="0"/>
 </level-list>
